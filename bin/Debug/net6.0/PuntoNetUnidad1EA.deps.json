@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "PuntoNetUnidad1EA/1.0.0": {
+        "runtime": {
+          "PuntoNetUnidad1EA.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "PuntoNetUnidad1EA/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
