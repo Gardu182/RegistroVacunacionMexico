@@ -19,10 +19,11 @@ namespace RegistroVacunacionMexico
                 try //Envolvemos el código que puede generar error en un bloque try-catch, el error puede ser que no nos de un número como opción
                 {                     
                     //Opciones del menú
-                    Console.WriteLine("1. Opción 1");
-                    Console.WriteLine("2. Opción 2");
-                    Console.WriteLine("3. Opción 3");
-                    Console.WriteLine("4. Salir");
+                    Console.WriteLine("1. Registro");
+                    Console.WriteLine("2. Consultar Datos");
+                    Console.WriteLine("3. Consultar Efectividad");
+                    Console.WriteLine("4. Mostrar Indicaciones");
+                    Console.WriteLine("5. Salir");
                     Console.WriteLine("Elige una de las opciones");
                     //Convertimos a entero la opción introducida por el usuario, si ocurre un error al convertir se va a l bloque catch
                     int opcion = Convert.ToInt32(Console.ReadLine());
@@ -43,11 +44,16 @@ namespace RegistroVacunacionMexico
                             Console.WriteLine("Opción 3");
                             break;
                         case 4:
+                            Console.WriteLine("Opcion 4");
+                            break;
+
+                        case 5:
                             Console.WriteLine("Hasta luego");
                             salir = true;
                             break;
+
                         default://Si no coincide con las opciones de 1 a 4 se ejecuta esto siempre que sea un número
-                            Console.WriteLine("Opción no válida, elige una opcion entre 1 y 4");
+                            Console.WriteLine("Opción no válida, elige una opcion entre 1 y 5");
                             break;
                     } 
                 }
