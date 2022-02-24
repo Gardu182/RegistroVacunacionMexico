@@ -14,6 +14,7 @@ namespace RegistroVacunacionMexico
         //Método main
         static void Main(string[] args)
         {
+            
             bool salir = false; //Variable que nos permite saber si el usuario quiere salir o no
             while (!salir) { //Mientras el usuario no quiera salir se repite:
                 try //Envolvemos el código que puede generar error en un bloque try-catch, el error puede ser que no nos de un número como opción
@@ -33,7 +34,26 @@ namespace RegistroVacunacionMexico
                     switch (opcion)
                     {
                         case 1://Si coincide con 1
-                            Console.WriteLine("Opción 1");
+                            Console.WriteLine("-----Confirmacion de Datos Personales-----");
+                            Console.WriteLine("Nombre:");
+                            String name = Console.ReadLine();
+                            Console.WriteLine("Apellido Paterno:");
+                            String apelidoPaterno = Console.ReadLine();
+                            Console.WriteLine("Apellido Materno:");
+                            String apellidoMaterno = Console.ReadLine();
+                            Console.WriteLine("Sexo:");
+                            byte sexo = Console.ReadLine();
+                            Console.WriteLine("Fecha de Nacimiento en Formato dd//MM/yyyy");
+                            DateTime fechaNacimiento = Console.ReadLine();
+                            Console.WriteLine("Estado Civil:");
+                            String estadoCivil = Console.ReadLine();
+                            Console.WriteLine("Discapacidad:");
+                            String discapacidad = Console.ReadLine();
+                            Console.WriteLine("Ingreso Mensual:");
+                            Double ingresoMensual = Double.Parse(Console.ReadLine());
+                            Console.WriteLine("Correo Electronico:");
+                            String correoElectronico = Console.ReadLine();
+                            Persona persona = new Persona(name, apelidoPaterno, apellidoMaterno, sexo, fechaNacimiento, estadoCivil, discapacidad, ingresoMensual, correoElectronico);
                             break;//Salimos del bloque
  
                         case 2://Si coincide con 2

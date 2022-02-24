@@ -2,11 +2,11 @@
 namespace RegistroVacunacionMexico
 {
     public class Persona
-    {
+    { 
+        //Atributos de la clase Persona
         private String nombre;
         private String apellidoPaterno;
         private String apellidoMaterno;
-        private Int16 edad;
         private Byte sexo;
         private DateTime fechaNacimiento;
         private String estadoCivil;
@@ -14,14 +14,14 @@ namespace RegistroVacunacionMexico
         private Double ingresoMensual;
         private String correoElectronico;
 
-        public Persona (String nombre, String apellidoPaterno, String apellidoMaterno, Int16 edad, 
+        //Constructor de la clase persona
+        public Persona (String nombre, String apellidoPaterno, String apellidoMaterno, 
                         Byte sexo, DateTime fechaNacimiento, String estadoCivil, 
                         String discapacidad, double ingresoMensual, String correoElectronico){
 
                             this.nombre = nombre;
                             this.apellidoPaterno = apellidoPaterno;
                             this.apellidoMaterno = apellidoMaterno;
-                            this.edad = edad;
                             this.sexo = sexo;
                             this.fechaNacimiento = fechaNacimiento;
                             this.estadoCivil = estadoCivil;
@@ -30,17 +30,26 @@ namespace RegistroVacunacionMexico
                             this.correoElectronico = correoElectronico;
 
         }
-
+        
+        //Getters y Setters de la calse Persona
         public String Nombre {get; set;}
         public String ApellidoPaterno {get; set;}
         public String ApellidoMaterno {get; set;}
-        public Int16 Edad {get; set;}
         public Byte Sexo {get; set;}
         public DateTime FechaNacimiento {get; set;}
         public String EstadoCivil {get; set;}
         public String Discapacidad {get; set;}
         public Double IngresoMensual {get; set;}
         public String CorreoElectronico {get; set;}
+
+        //Metodos de la clase Persona
+        public void calcularEdad(String fechaNacString){
+
+            DateTime fechaNacimiento = DateTime.ParseExact(fechaNacString, "dd/MM/yyyy", null);
+            DateTime fechaActual = DateTime.Now;
+            int anos = fechaActual.Year-fechaNacimiento.Year;
+ 
+        }
 
 
     }
