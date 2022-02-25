@@ -14,7 +14,8 @@ namespace RegistroVacunacionMexico
         //Método main
         static void Main(string[] args)
         {
-            
+            Persona person = new Persona();
+            Vacuna vacuna = new Vacuna();
             bool salir = false; //Variable que nos permite saber si el usuario quiere salir o no
             while (!salir) { //Mientras el usuario no quiera salir se repite:
                 try //Envolvemos el código que puede generar error en un bloque try-catch, el error puede ser que no nos de un número como opción
@@ -36,32 +37,47 @@ namespace RegistroVacunacionMexico
                         case 1://Si coincide con 1
                             Console.WriteLine("-----Confirmacion de Datos Personales-----");
                             Console.WriteLine("Nombre:");
-                            String name = Console.ReadLine();
+                            person.Nombre = Console.ReadLine();
                             Console.WriteLine("Apellido Paterno:");
-                            String apelidoPaterno = Console.ReadLine();
+                            person.ApellidoPaterno = Console.ReadLine();
                             Console.WriteLine("Apellido Materno:");
-                            String apellidoMaterno = Console.ReadLine();
-                            Console.WriteLine("Sexo:");
-                            byte sexo = Console.ReadLine();
-                            Console.WriteLine("Fecha de Nacimiento en Formato dd//MM/yyyy");
-                            DateTime fechaNacimiento = Console.ReadLine();
+                            person.ApellidoMaterno = Console.ReadLine();
+                            Console.WriteLine("Sexo: 1 masculino, 0 femenino");
+                            person.Sexo = Convert.ToBoolean(Console.ReadLine());
+                            Console.WriteLine("Fecha de Nacimiento en Formato dd/MM/yyyy");
+                            string fechaNacString = Console.ReadLine();
+                            try{
+
+                                DateTime fechaNacimiento = DateTime.ParseExact(fechaNacString, "dd/MM/yyyy", null);
+                                person.FechaNacimiento = fechaNacimiento;
+
+
+                            }catch(Exception e){
+
+                                Console.WriteLine("Favor de escribir la fecha de nacimiento en el formato correcto dd/MM/yyy");
+                                person.FechaNacimiento = Convert.ToDateTime(Console.ReadLine());
+
+                            }
                             Console.WriteLine("Estado Civil:");
-                            String estadoCivil = Console.ReadLine();
+                            person.EstadoCivil = Console.ReadLine();
                             Console.WriteLine("Discapacidad:");
-                            String discapacidad = Console.ReadLine();
+                            person.Discapacidad = Console.ReadLine();
                             Console.WriteLine("Ingreso Mensual:");
-                            Double ingresoMensual = Double.Parse(Console.ReadLine());
+                            person.IngresoMensual = Double.Parse(Console.ReadLine());
                             Console.WriteLine("Correo Electronico:");
-                            String correoElectronico = Console.ReadLine();
-                            Persona persona = new Persona(name, apelidoPaterno, apellidoMaterno, sexo, fechaNacimiento, estadoCivil, discapacidad, ingresoMensual, correoElectronico);
+                            person.CorreoElectronico = Console.ReadLine();
                             break;//Salimos del bloque
  
                         case 2://Si coincide con 2
-                            Console.WriteLine("Opción 2");
+                            DateTime edad = person.FechaNacimiento;
+                            person.calcularEdad(edad);
+                            Console.WriteLine("La edad es: " + person.calcularEdad(edad));
                             break;
  
                         case 3:
-                            Console.WriteLine("Opción 3");
+                            double ingresoPersona = person.IngresoMensual;
+                            double costoAplicacion = vacuna.calcularImpuestoAplicacion(ingresoPersona);
+                            Console.WriteLine("El impuesto por aplicacion es de: " + String.Format("{0:C}", costoAplicacion) + " Pesos");
                             break;
                         case 4:
                             Console.WriteLine("Opcion 4");
