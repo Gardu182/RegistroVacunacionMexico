@@ -43,13 +43,15 @@ namespace RegistroVacunacionMexico
                             Console.WriteLine("Apellido Materno:");
                             person.ApellidoMaterno = Console.ReadLine();
                             Console.WriteLine("Sexo: 1 masculino, 0 femenino");
-                            person.Sexo = Convert.ToBoolean(Console.ReadLine());
+                            int result = Convert.ToInt16(Console.ReadLine());
+                            person.Sexo = result == 1 ? true : false;
                             Console.WriteLine("Fecha de Nacimiento en Formato dd/MM/yyyy");
                             string fechaNacString = Console.ReadLine();
                             try{
 
                                 DateTime fechaNacimiento = DateTime.ParseExact(fechaNacString, "dd/MM/yyyy", null);
                                 person.FechaNacimiento = fechaNacimiento;
+                                person.calcularEdad(fechaNacimiento);
 
 
                             }catch(Exception e){
@@ -68,19 +70,37 @@ namespace RegistroVacunacionMexico
                             person.CorreoElectronico = Console.ReadLine();
                             break;//Salimos del bloque
  
-                        case 2://Si coincide con 2
-                            DateTime edad = person.FechaNacimiento;
-                            person.calcularEdad(edad);
-                            Console.WriteLine("La edad es: " + person.calcularEdad(edad));
-                            break;
- 
-                        case 3:
+                        case 2://Si coincide con la opcion 2
+                            string genero = person.Sexo == true ? "Masculino" : "Femenino";
                             double ingresoPersona = person.IngresoMensual;
                             double costoAplicacion = vacuna.calcularImpuestoAplicacion(ingresoPersona);
-                            Console.WriteLine("El impuesto por aplicacion es de: " + String.Format("{0:C}", costoAplicacion) + " Pesos");
+                            Console.WriteLine("****Datos del Vacunado****");
+                            Console.WriteLine("Paciente: " + person.Nombre + " " + person.ApellidoPaterno + " " + person.ApellidoMaterno);
+                            Console.WriteLine("Fecha de Nacimiento: " + person.FechaNacimiento.ToShortDateString());
+                            Console.WriteLine("Edad:" + person.Edad + " anos");
+                            Console.WriteLine("Sexo: "+ genero);
+                            Console.WriteLine("Estado civil: " + person.EstadoCivil);
+                            Console.WriteLine("Correo electronico: " + person.CorreoElectronico);
+                            Console.WriteLine("Discapacidad: " + person.Discapacidad);
+                            Console.WriteLine("Ingreso: " + String.Format("{0:C}", person.IngresoMensual + " Pesos"));
+                            Console.WriteLine("Folio de vacunacion: " + vacuna.generarFolioVacunacion(person.Nombre, person.ApellidoPaterno, person.ApellidoMaterno));
+                            Console.WriteLine("La vacuna no sera efectiva despues de: " + vacuna.calcularTiempoEfectividad().ToShortDateString());
+                            Console.WriteLine("Nota: la vacuna cuenta con un costo dependiendo del salario mensual");
+                            Console.WriteLine("El impuesto por aplicacion es de: " + String.Format("{0:C}", costoAplicacion + " Pesos"));
                             break;
-                        case 4:
-                            Console.WriteLine("Opcion 4");
+ 
+                        case 3://Si conincide con la opcion 3
+                            Console.WriteLine("************Cuidado************");
+                            Console.WriteLine("La vacuna no sera efectiva despues del: " + vacuna.calcularTiempoEfectividad().ToShortDateString());
+                            Console.WriteLine("************Cuidado************");
+                            break;
+
+                        case 4://Si conincide con la opcion 4
+                            Console.WriteLine("****Indicaciones de Vacunacion contra COVID-19****");
+                            Console.WriteLine("Favor de no hacer ningun tipo de ejercicio despues de las " + vacuna.mostrarIndicaciones().ToString("h:mm tt"));
+                            Console.WriteLine("es necesario guardar reposo y observar cualquier efecto secundario como:");
+                            Console.WriteLine("dolor de cabeza, huesos, mareos o algun otro, de ser asi reportarse con su medico de cabecera.");
+
                             break;
 
                         case 5:

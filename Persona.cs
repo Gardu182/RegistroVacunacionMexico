@@ -8,22 +8,23 @@ namespace RegistroVacunacionMexico
         public string Nombre {get; set;}
         public string ApellidoPaterno {get; set;}
         public string ApellidoMaterno {get; set;}
+        public int Edad {get; set;}
         public bool Sexo {get; set;}
         public DateTime FechaNacimiento {get; set;}
         public string EstadoCivil {get; set;}
         public string Discapacidad {get; set;}
-        public Double IngresoMensual {get; set;}
-        public String CorreoElectronico {get; set;}        
+        public double IngresoMensual {get; set;}
+        public string CorreoElectronico {get; set;}        
         
 
         //Metodos de la clase Persona
-        public double calcularEdad(DateTime fechaNacString){
+        public void calcularEdad(DateTime fechaNacString){
 
             DateTime fechaActual = DateTime.Now;
             TimeSpan diferencia = fechaActual - fechaNacString;
-            double dias = diferencia.TotalDays;
-            double anos = Math.Floor(dias/365);
-            return anos;
+            int dias = Convert.ToInt32(diferencia.TotalDays);
+            int anos = Convert.ToInt32(dias/365);
+            this.Edad = anos;
 
         }
 

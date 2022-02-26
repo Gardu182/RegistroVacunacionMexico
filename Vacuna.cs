@@ -13,8 +13,11 @@ namespace RegistroVacunacionMexico
 
 
         //Metodos de la clase Vacuna
-        public void calcularTiempoEfectividad(){
+        public DateTime calcularTiempoEfectividad(){
 
+           DateTime today = DateTime.Now;
+           DateTime diasEfectividad = today.AddDays(180);
+           return diasEfectividad;
 
         }
 
@@ -25,11 +28,26 @@ namespace RegistroVacunacionMexico
 
         }
 
-        public void mostrarIndicaciones(){
+        public DateTime mostrarIndicaciones(){
+
+           DateTime today = DateTime.Now;
+           DateTime hrsDescanso = today.AddHours(5);
+           return hrsDescanso;
 
         }
 
-        public void generarFolioVacunacion(){
+        public string generarFolioVacunacion(String nombre, String apellidoP, String apellidoM){
+            
+            string folioVacunacion = " ";
+            int startIndex = 0;
+            int length = 1;
+            Random rmd = new Random();
+            int numero = rmd.Next(0,1000);
+            String substringNom = nombre.Substring(startIndex, length);
+            String substringApeP = apellidoP.Substring(startIndex, length);
+            String substringApeM = apellidoM.Substring(startIndex, length);
+            folioVacunacion = substringNom + substringApeP + substringApeM + numero; 
+            return folioVacunacion;
 
         }
 
